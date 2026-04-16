@@ -103,3 +103,79 @@ $$
 
 #### 实验
 
+**任务和数据集** 
+我们在广泛使用的 HotpotQA 数据集及其新构建的变体上进行实验。HotpotQA 是一个具有挑战性的多跳问答数据集，要求模型通过整合来自多个文档的信息来回答复杂问题。该数据集包含两种设置：
+1. "干扰项"（Distractor）设置，其中提供正好 10 个维基百科段落，其中两个为金标准支撑段落，其余为干扰项；
+2. "全维基"（Fullwiki）设置，需从整个维基百科知识库中检索证据。
+
+为了排除 LLM 先验知识的影响，我们进一步在 HotpotQA 数据集上构建了一个新变体，称为"实体替换版"。我们随机选择 20% 的 HotpotQA（干扰项）数据集，并使用 spaCy 工具包检测和替换所有命名实体。实体替换使用不到 0.5% 的 LLM 查询，被视为一种轻量级方法。表 1 显示了所使用数据集的统计数据。**逼模型必须真正依赖检索，而不是背过答案。**
+**KG 构建规模**
+作者用 Llama-3 从 66,581 篇文档中抽 triplet，最后构造出：
+
+- **211,356 个 triplet**
+- **98,226 个 entity**
+- **19,813 个 relation**
+这说明它不是一个小玩具级图，而是一个中等规模的文档图谱。
+**对比方法：**
+- LLM-only
+- Semantic RAG
+- Semantic RAG + Rerank
+- Hybrid RAG
+- LightRAG
+- GraphRAG
+- KG2RAG
+**统一使用：**
+- **LLaMA3-8B** 做 KG 构建与回答生成
+- **mxbai-embed-large** 做 embedding
+- **bge-reranker-large** 做 cross-encoder rerank
+- 默认 k=10
+**指标**
+- **上下文召回率**：检索到的上下文中包含的正确支撑块的比例。
+- **F1 分数**
+**回答质量
+- 所有 RAG 方法都显著优于 LLM-only
+- KG2RAG 在 fullwiki 这种更难的设定里，至少比 baseline 高 **8%**
+- 在 Shuffle-HotpotQA 上，也分别提升至少 **2.5%** 和 **6.4%**
+**KG2RAG 的优势在“需要真正检索、真正多跳”的场景里更明显。**
+
+**检索质量：不是只会多找，而是找得更平衡**
+Table 2 显示 KG2RAG 的 retrieval F1 也整体更强。  
+例如在 Hotpot-Dist 上：
+- Semantic RAG：F1 0.343，Precision 0.206，Recall 0.894
+- Hybrid RAG：F1 0.354，Precision 0.222，Recall 0.921
+- **KG2RAG：F1 0.436，Precision 0.301，Recall 0.908**
+ Hybrid / semantic 方法 recall 很高，但 precision 偏低，说明带回了很多噪声。KG2RAG 在 recall 不怎么掉的前提下，precision 提升明显。
+
+
+#### 消融实验
+都在HotpotQA（干扰项）数据集上进行
+
+**上下文组织的独立贡献**
+在 HotpotQA distractor 上：
+
+- 完整 KG2RAG：response F1 0.663，retrieval F1 0.436，平均 chunk 数 **8.11**
+- 去掉 organization：response F1 0.660，retrieval F1 0.259，平均 chunk 数 **16.76**
+说明什么？
+- 不做 organization，答案质量看起来差不多
+- 但检索质量明显变差，chunk 数翻倍
+- 也就是说扩展能找回来东西，但如果不整理，噪声很多、token 浪费也大
+**
+**KG²RAG 不同变体的效果**
+同样在 HotpotQA distractor 上
+- 去掉 expansion：response F1 0.626，retrieval F1 0.473，平均 chunk 数 **4.41**
+这组很有意思：
+- retrieval precision 反而更高
+- chunk 更少
+- 但最终回答更差
+
+此外还有做了效率的测试  以及泛化到别的数据集（普适性）的测试
+
+
+#### 不足####
+只优化了 **retrieval optimization** 这一块，没有处理 query rewriting、多轮对话等其它 RAG 模块，所以它更像是一个可插拔增强模块，而不是完整端到端 RAG 系统。
+- 图谱质量决定上限
+- 更适合事实型、多跳型任务
+- MST 这一步有信息丢失风险
+- 实验任务偏 QA
+
+
