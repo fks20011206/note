@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "论文.md",
+                "file": "我的一些idea.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "论文"
+              "title": "我的一些idea"
             }
           },
           {
@@ -35,8 +35,7 @@
               "title": "我的一些idea"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -209,7 +208,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "862e6f4e4fb8e0c2",
+  "active": "d013483430b5e48e",
   "lastOpenFiles": [
     "论文.md",
     "我的一些idea.md",
