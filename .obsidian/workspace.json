@@ -11,14 +11,12 @@
             "id": "4ce3c85007ba6975",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "我的一些idea.md",
-                "mode": "source",
-                "source": false
+                "file": "Pasted image 20260425212430.png"
               },
-              "icon": "lucide-file",
-              "title": "我的一些idea"
+              "icon": "lucide-image",
+              "title": "Pasted image 20260425212430"
             }
           }
         ]
@@ -194,12 +192,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "4ce3c85007ba6975",
+  "active": "0f60f134b54f0c4e",
   "lastOpenFiles": [
-    "论文.md",
-    "我的一些idea.md",
-    "Knowledge Graph-Guided Retrieval Augmented Generation.md",
     "Pasted image 20260416145256.png",
+    "我的一些idea.md",
+    "Pasted image 20260425212430.png",
+    "论文.md",
+    "Pasted image 20260425212407.png",
+    "Pasted image 20260425212413.png",
+    "Knowledge Graph-Guided Retrieval Augmented Generation.md",
     "test.md",
     "Pasted image 20260416142535.png",
     "Pasted image 20260416140202.png"
