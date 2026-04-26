@@ -67,12 +67,16 @@ Problem: ...
 
 
 
-你现在的方法是：
+我现在的方法是：
 
 先得到 normal trajectory
 在 candidate 处分支
 一条让模型正常收尾
 一条让模型续写 self-doubt 段（续写self-doubt段采用prompt引导的方式，多次采样，并且与分支前的文本进行拼接）：
 再对完整文本 forward。
-看后续 candidate / final answer 的 hidden state，经 probe 后，置信度是否上升
 
+probe除了训练对答案的置信度后，还需要训练未来是否会继续self-doubt。
+训练完probe后，组织一个json文件，并提取以下信息，question_id、traj_type、candidate（包含candidate_pos,candidate_ans,candidate_ans是经过规则处理的也就是只提取了数字的）、answer_text（输出的所有内容）、final_answer（若不存在，就选择最后一个candidate）、
+
+
+看后续 candidate / final answer 的 hidden state，经 probe 后，置信度是否上升。
