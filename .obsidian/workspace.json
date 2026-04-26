@@ -11,12 +11,14 @@
             "id": "4ce3c85007ba6975",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "Pasted image 20260425212430.png"
+                "file": "论文.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20260425212430"
+              "icon": "lucide-file",
+              "title": "论文"
             }
           }
         ]
@@ -192,11 +194,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "0f60f134b54f0c4e",
+  "active": "4ce3c85007ba6975",
   "lastOpenFiles": [
-    "Pasted image 20260416145256.png",
     "我的一些idea.md",
     "Pasted image 20260425212430.png",
+    "Pasted image 20260416145256.png",
     "论文.md",
     "Pasted image 20260425212407.png",
     "Pasted image 20260425212413.png",

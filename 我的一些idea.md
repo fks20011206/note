@@ -66,3 +66,13 @@ Problem: ...
 请评估后制定计划，并且告诉我还有什么地方需要补足
 
 
+
+你现在的方法是：
+
+先得到 normal trajectory
+在 candidate 处分支
+一条让模型正常收尾
+一条让模型续写 self-doubt 段（续写self-doubt段采用prompt引导的方式，多次采样，并且与分支前的文本进行拼接）：
+再对完整文本 forward。
+看后续 candidate / final answer 的 hidden state，经 probe 后，置信度是否上升
+
