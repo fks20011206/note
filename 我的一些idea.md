@@ -193,3 +193,6 @@ R_trajectory = R_first + R_final + R_efficiency + Σ R_step
 <>  <think>  final_ans .
 
 ---qwen3
+
+
+
