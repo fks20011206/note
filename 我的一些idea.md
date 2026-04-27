@@ -195,4 +195,9 @@ R_trajectory = R_first + R_final + R_efficiency + Σ R_step
 ---qwen3
 
 
-
+todolist:
+1.下载模型权重，下载32b的大模型用于数据标注。
+2.用最朴素的提示词提示模型输出答案，用32b大模型/api进行标注self-doubt的点。
+3.让模型对每条轨迹的每个点，在forward的过程中强制输出答案（早停），我们提取hidden-state，并且存为样本。
+4.使用数据训练probe。
+5.若有效。
