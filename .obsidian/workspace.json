@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "我的一些idea.md",
+                "file": "实验.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "我的一些idea"
+              "title": "实验"
             }
           }
         ]
@@ -196,11 +196,12 @@
   },
   "active": "4ce3c85007ba6975",
   "lastOpenFiles": [
-    "论文.md",
-    "Pasted image 20260416145256.png",
-    "Knowledge Graph-Guided Retrieval Augmented Generation.md",
     "我的一些idea.md",
+    "实验.md",
     "Pasted image 20260425212430.png",
+    "Pasted image 20260416145256.png",
+    "论文.md",
+    "Knowledge Graph-Guided Retrieval Augmented Generation.md",
     "Pasted image 20260425212407.png",
     "Pasted image 20260425212413.png",
     "test.md",
