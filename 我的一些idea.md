@@ -190,5 +190,6 @@ R_trajectory = R_first + R_final + R_efficiency + Σ R_step
 关键观察：**"首次就对并停止"(+3.0) 略优于 "首次错但改对"(+2.7)**，这确保了模型优先学习首次准确性，而非依赖 doubt 兜底。
 
   
+<>  <think>  final_ans .
 
----
+---qwen3
