@@ -196,10 +196,9 @@ R_trajectory = R_first + R_final + R_efficiency + Σ R_step
 
 
 todolist:
-1.下载模型权重，下载32b的大模型用于数据标注。
+1.使用deepseek-ai/DeepSeek-R1-0528-Qwen3-8B下载模型权重，下载32b的大模型用于数据标注。
 2.用最朴素的提示词提示模型输出答案，用32b大模型/api进行标注self-doubt的点。
 3.让模型对每条轨迹的每个点，在forward的过程中强制输出答案（早停），我们选择提取“final_ans” 这个点的“hidden-state（在答案之前防止学到答案的表示），并且存为样本，如果这个点输出的答案与gold answer相同，那么作为正样本，否则为负样本。
 4.使用数据训练probe，输出值为模型此刻输出答案正确率，训练的时候同一道题目的不同轨迹都要被分到同一个训练集/测试集。
 5.使用probe对一系列已经标注好的位置，首先考虑self-doubt，判断模型对答案正确率是否整体乘递增。来说明self-doubt实际上是有助提升模型自信。
 
-6.
