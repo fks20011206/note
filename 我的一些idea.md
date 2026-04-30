@@ -217,3 +217,5 @@ todolist:
   错误→正确，  正确→正确等规则进行每步转移的奖励。第二个方案则是，采样后，对每个self-doubt点像之前训练probe一样，再跑一遍强制输出final_ans，然后再进行轨迹级奖励。
 
    两个方案的轨迹级奖励是不变的，参考/home/ubuntu/exp-r1/code/mine/GRPO_STEP_REWARD.md ，你觉得选哪个方案更合理，并给出理由
+
+conda run -n llm python /home/ubuntu/exp-r1/code/mine/qwen3-8b/grpo_train_lora.py --reward-approach judge --num-questions 5 --group-size 2  --rounds 1 --judge-tp 4
