@@ -220,3 +220,4 @@ todolist:
 
   tmux new -s grpo                                                                                                 
   conda run -n llm python /home/ubuntu/exp-r1/code/mine/qwen3-8b/grpo_train_lora.py  --reward-approach judge --num-questions 500 --group-size 4 --rounds 5 --judge-tp 4
+
