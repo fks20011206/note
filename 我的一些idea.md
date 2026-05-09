@@ -222,3 +222,7 @@ todolist:
   conda run -n llm python /home/ubuntu/exp-r1/code/mine/qwen3-8b/grpo_train_lora.py  --reward-approach judge --num-questions 500 --group-size 4 --rounds 5 --judge-tp 4
 
 ![[Pasted image 20260502221427.png]]
+
+
+
+rsync -avh --info=progress2 --no-links --exclude='env/' --exclude='__pycache__/' --exclude='*.pyc' --exclude='.git/'  ubuntu@111.14.140.28:/home/ubuntu/exp-r1/ ~/exp-r1-local/
