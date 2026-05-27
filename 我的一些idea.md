@@ -227,7 +227,6 @@ todolist:
 
 agentic rl
 agent 
-agent memory 
-content level 
-tp pp  bp 
+agent memory  content level 
+tp pp  dp 
 reasoning 
