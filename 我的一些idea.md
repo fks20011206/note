@@ -227,4 +227,5 @@ todolist:
 
 agentic rl
 agent 
-agent memory
+agent memory 
+content level 
