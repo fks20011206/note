@@ -155,13 +155,13 @@ query -> top-k memory notes -> linked neighborhood -> richer context
 
 对比方法包括：
 
-|方法|核心思想|
-|---|---|
-|LoCoMo|直接把完整历史对话放入 prompt，不使用特殊 memory|
-|ReadAgent|把长上下文分页、摘要，再交互式查找|
-|MemoryBank|用遗忘曲线和用户画像维护历史记忆|
-|MemGPT|类似操作系统内存层级，区分 main context 和 external context|
-|A-MEM|结构化 note + 动态链接 + 记忆演化|
+| 方法         | 核心思想                                          |
+| ---------- | --------------------------------------------- |
+| LoCoMo     | 直接把完整历史对话放入 prompt，不使用特殊 memory               |
+| ReadAgent  | 把长上下文分页、摘要，再交互式查找                             |
+| MemoryBank | 用遗忘曲线和用户画像维护历史记忆                              |
+| MemGPT     | 类似操作系统内存层级，区分 main context 和 external context |
+| A-MEM      | 结构化 note + 动态链接 + 记忆演化                        |
 
 这些 baseline 的介绍在附录 A.1。
 
