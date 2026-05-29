@@ -10,7 +10,7 @@
 
 ---
 
-## 2. 论文的一句话方法
+## 2. 论文方法
 
 A-MEM 把每次交互变成一条结构化 note，然后做三件事：
 
@@ -145,7 +145,7 @@ query -> top-k memory notes -> linked neighborhood -> richer context
 
 ---
 
-## 7. Block 5：实验设置
+## 7. 实验设置
 
 论文主要在两个长期对话 QA 数据集上评估。
 
@@ -169,7 +169,7 @@ query -> top-k memory notes -> linked neighborhood -> richer context
 
 ---
 
-## 8. Block 6：主实验结果怎么读？
+## 8. 主实验结果？
 
 ### 8.1 LoCoMo 上的总体趋势
 
@@ -186,7 +186,7 @@ DialSim 表 2 中，A-MEM 在 F1、BLEU-1、ROUGE-L、ROUGE-2、METEOR、SBERT S
 
 ---
 
-## 9. Block 7：消融实验说明了什么？
+## 9. 消融实验
 
 论文消融了两个关键模块：
 
@@ -206,7 +206,7 @@ DialSim 表 2 中，A-MEM 在 F1、BLEU-1、ROUGE-L、ROUGE-2、METEOR、SBERT S
 
 ---
 
-## 10. Block 8：k 值实验说明“不是检索越多越好”
+## k 值实验说明“不是检索越多越好”
 
 论文分析了 top-k 检索数对性能的影响，测试了 k = 10, 20, 30, 40, 50。总体趋势是：k 增大通常会提升性能，但到一定程度后收益变小，甚至略降。论文解释为：更多历史上下文能提供更多证据，但也会带来噪声，并增加模型处理长上下文的负担。
 
@@ -216,7 +216,7 @@ DialSim 表 2 中，A-MEM 在 F1、BLEU-1、ROUGE-L、ROUGE-2、METEOR、SBERT S
 
 ---
 
-## 11. Block 9：效率与可扩展性
+## 11.效率与可扩展性
 
 论文强调 A-MEM 的 token 成本较低。它声称每次 memory operation 大约需要 1,200 tokens，相比 LoCoMo 和 MemGPT 约 16,900 tokens，减少 85–93%；用 GPT-4o-mini 平均处理时间 5.4 秒，用本地 Llama3.2-1B 单卡平均 1.1 秒。
 
@@ -226,7 +226,7 @@ Scaling Analysis 中，论文比较了 1K、10K、100K、1M 条 memory 下的内
 
 ---
 
-## 12. Block 10：可视化结果
+## 12. 可视化结果
 
 论文用 t-SNE 展示 memory embedding 分布。A-MEM 的点比 base memory 更容易形成聚类，base memory 指的是去掉 link generation 和 memory evolution 的版本。作者据此认为，A-MEM 的动态链接和演化机制能让 memory representation 更有结构。
 
@@ -261,25 +261,3 @@ Scaling Analysis 中，论文比较了 1K、10K、100K、1M 条 memory 下的内
 第四，写入阶段需要多次 LLM 调用。虽然论文强调 retrieval token 更少，但如果交互频繁，note construction、link generation、memory evolution 的成本可能成为瓶颈。
 
 ---
-
-## 15. 如果你关注“图相关 Agent Memory”，这篇文章的启发
-
-这篇论文很适合作为 **graph-based / structured memory for LLM agents** 的代表来读。它虽然不一定显式使用传统图数据库，但本质上是在构造一个 memory graph：
-
-```text
-node = memory note
-node attributes = content, time, keywords, tags, context, embedding
-edge = LLM-generated semantic link
-graph update = memory evolution
-retrieval = query-to-node + neighborhood expansion
-```
-
-如果你后续想做相关研究，可以沿着几个方向扩展：
-
-一是做 **edge quality evaluation**，专门评估 LLM 生成的 memory links 是否正确、有用、稳定。
-
-二是做 **controlled memory evolution**，避免旧记忆被错误更新。例如引入 confidence、versioning、rollback、或者只追加 evolution log 而不直接覆盖旧记忆。
-
-三是做 **task-aware graph retrieval**，不是固定 top-k，而是根据问题类型选择不同 traversal 策略：multi-hop 用邻域扩展，temporal QA 用时间约束，user preference QA 用 profile cluster。
-
-四是把它和你之前关注的 probe/内部置信度思路结合：当 Agent 判断某条记忆链接或演化不确定时，用 probe 或 verifier 决定是否写入/更新，而不是完全依赖 LLM 自己的 JSON 输出。
