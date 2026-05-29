@@ -136,15 +136,15 @@ p* = 最早一个 prefix 位置，使得从这里强制输出 final answer 已�
 
 你比较这些信号谁更早、更准地预测 p*：
 
-|信号|类型|
-|---|---|
-|hidden-state probe score|内部信号|
-|answer token probability|输出概率|
-|entropy / logprob|输出分布|
-|intermediate answer confidence|CoDE-Stop 类信号|
-|answer convergence|ES-CoT 类信号|
-|Wait/Hmm/Alternatively 出现频率|NoWait/CGRS 类信号|
-|当前长度比例 t/T|长度启发式|
+| 信号                             | 类型              |
+| ------------------------------ | --------------- |
+| hidden-state probe score       | 内部信号            |
+| answer token probability       | 输出概率            |
+| entropy / logprob              | 输出分布            |
+| intermediate answer confidence | CoDE-Stop 类信号   |
+| answer convergence             | ES-CoT 类信号      |
+| Wait/Hmm/Alternatively 出现频率    | NoWait/CGRS 类信号 |
+| 当前长度比例 t/T                     | 长度启发式           |
 
 ## 指标
 
@@ -230,15 +230,15 @@ q_t ≥ τ for m consecutive checkpoints
 
 ## 主指标
 
-|指标|说明|
-|---|---|
-|Accuracy|最终正确率|
-|Reasoning tokens|只算 CoT token|
-|Total tokens|包含中间答案诱导、额外 prompt、probe forward 开销|
-|Wall-clock latency|真正推理时间|
-|Accuracy-token Pareto curve|不同阈值下的 tradeoff|
-|Harmful stop rate|原本能答对但早停后答错|
-|Useful stop rate|原本会继续冗余但 probe 成功提前停|
+| 指标                          | 说明                                  |
+| --------------------------- | ----------------------------------- |
+| Accuracy                    | 最终正确率                               |
+| Reasoning tokens            | 只算 CoT token                        |
+| Total tokens                | 包含中间答案诱导、额外 prompt、probe forward 开销 |
+| Wall-clock latency          | 真正推理时间                              |
+| Accuracy-token Pareto curve | 不同阈值下的 tradeoff                     |
+| Harmful stop rate           | 原本能答对但早停后答错                         |
+| Useful stop rate            | 原本会继续冗余但 probe 成功提前停                |
 
 一定要画 Pareto 曲线，不要只报一个点。因为早停方法本质上都是 accuracy-efficiency tradeoff。
 
@@ -398,18 +398,19 @@ padding: 不反传，但可以参与 advantage 归一化，看你复现 DECS 的
 
 不要只看 accuracy。你需要同时看：
 
-|指标|为什么重要|
-|---|---|
-|eval accuracy|不能只变短不变强|
-|avg response length|是否减少 overthinking|
-|tokens per correct answer|效率核心指标|
-|length-accuracy Pareto|训练后模型是否更优|
-|all-correct group advantage|你之前遇到的关键问题|
-|mixed group advantage|是否还能区分正确/错误|
-|NRP variance|probe-NRP 是否比 heuristic NRP 稳定|
-|post-NRP token ratio|冗余区域占比是否下降|
-|KL / entropy|防止模型坍缩成短答|
-|parse_success|防止短了但格式坏了|
+| 指标                          | 为什么重要                          |
+| --------------------------- | ------------------------------ |
+| eval accuracy               | 不能只变短不变强                       |
+| avg response length         | 是否减少 overthinking              |
+| tokens per correct answer   | 效率核心指标                         |
+| length-accuracy Pareto      | 训练后模型是否更优                      |
+| all-correct group advantage | 你之前遇到的关键问题                     |
+| mixed group advantage       | 是否还能区分正确/错误                    |
+| NRP variance                | probe-NRP 是否比 heuristic NRP 稳定 |
+| post-NRP token ratio        | 冗余区域占比是否下降                     |
+| KL / entropy                | 防止模型坍缩成短答                      |
+| parse_success               | 防止短了但格式坏了                      |
+
 
 你尤其应该加一个指标：
 
