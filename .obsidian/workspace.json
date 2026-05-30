@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Knowledge Graph-Guided Retrieval Augmented Generation.md",
+                "file": "A-Mem  Agentic Memory for LLM Agents.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Knowledge Graph-Guided Retrieval Augmented Generation"
+              "title": "A-Mem  Agentic Memory for LLM Agents"
             }
           },
           {
@@ -50,7 +50,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -223,12 +223,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "e53e3fb6cc9e81f2",
+  "active": "ee97bf93bd5d798a",
   "lastOpenFiles": [
-    "A-Mem  Agentic Memory for LLM Agents.md",
     "Knowledge Graph-Guided Retrieval Augmented Generation.md",
-    "论文.md",
     "idea2.md",
+    "A-Mem  Agentic Memory for LLM Agents.md",
+    "论文.md",
     "实验.md",
     "未命名.md",
     "我的一些idea.md",
